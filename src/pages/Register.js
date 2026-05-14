@@ -12,7 +12,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('https://task-manager-api-lylm.onrender.com', {
+      await axios.post('https://task-manager-api-lylm.onrender.com/api/auth/register', {
         name, email, password
       });
       alert('Registered successfully! Please login.');
@@ -28,7 +28,6 @@ function Register() {
       display: 'flex',
       background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
     }}>
-
       <div style={{
         flex: 1,
         display: 'flex',
@@ -77,27 +76,21 @@ function Register() {
           <p style={{color: '#666', marginBottom: '25px', fontSize: '14px'}}>
             Start managing your tasks today
           </p>
-
           {error && <p className="error">{error}</p>}
-
           <form onSubmit={handleSubmit}>
             <label style={{fontSize: '13px', fontWeight: '600', color: '#444'}}>Full Name</label>
             <input type="text" placeholder="Akshatha"
               value={name} onChange={(e) => setName(e.target.value)} />
-
             <label style={{fontSize: '13px', fontWeight: '600', color: '#444'}}>Email</label>
             <input type="email" placeholder="you@example.com"
               value={email} onChange={(e) => setEmail(e.target.value)} />
-
             <label style={{fontSize: '13px', fontWeight: '600', color: '#444'}}>Password</label>
             <input type="password" placeholder="••••••••"
               value={password} onChange={(e) => setPassword(e.target.value)} />
-
             <button type="submit" style={{width: '100%', marginTop: '5px', padding: '14px'}}>
               Create Account
             </button>
           </form>
-
           <p style={{marginTop: '20px', textAlign: 'center', fontSize: '14px', color: '#666'}}>
             Already have an account? <a href="/login" className="link">Login</a>
           </p>

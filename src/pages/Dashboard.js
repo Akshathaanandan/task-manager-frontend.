@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const API = 'https://task-manager-api-lylm.onrender.com';
+
 function Dashboard() {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState('');
@@ -20,7 +22,7 @@ function Dashboard() {
 
   const fetchTasks = async () => {
     try {
-      const res = await axios.get('https://task-manager-api-lylm.onrender.com/api/tasks', {
+      const res = await axios.get(`${API}/api/tasks`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setTasks(res.data);
@@ -33,7 +35,7 @@ function Dashboard() {
     e.preventDefault();
     if (!title) return;
     try {
-      await axios.post('https://task-manager-api-lylm.onrender.com/api/tasks',
+      await axios.post(`${API}/api/tasks`,
         { title, description },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -47,7 +49,7 @@ function Dashboard() {
 
   const updateStatus = async (id, status) => {
     try {
-      await axios.put(`https://task-manager-api-lylm.onrender.com/api/tasks/${id}`,
+      await axios.put(`${API}/api/tasks/${id}`,
         { status },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -59,7 +61,7 @@ function Dashboard() {
 
   const deleteTask = async (id) => {
     try {
-      await axios.delete(`https://task-manager-api-lylm.onrender.com/api/tasks/${id}`, {
+      await axios.delete(`${API}/api/tasks/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchTasks();
@@ -80,7 +82,6 @@ function Dashboard() {
 
   return (
     <div style={{minHeight:'100vh', background:'#f0f2f5'}}>
-
       <div className="navbar">
         <h1>📝 Task Manager</h1>
         <div style={{display:'flex', alignItems:'center', gap:'15px'}}>
@@ -90,7 +91,6 @@ function Dashboard() {
       </div>
 
       <div className="container">
-
         <div style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'15px', marginBottom:'25px'}}>
           <div style={{background:'white', borderRadius:'12px', padding:'20px', textAlign:'center', boxShadow:'0 2px 8px rgba(0,0,0,0.08)'}}>
             <div style={{fontSize:'32px'}}>📋</div>

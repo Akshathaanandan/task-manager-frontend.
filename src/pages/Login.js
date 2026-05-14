@@ -11,7 +11,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('https://task-manager-api-lylm.onrender.com', {
+      const res = await axios.post('https://task-manager-api-lylm.onrender.com/api/auth/login', {
         email, password
       });
       localStorage.setItem('token', res.data.token);
@@ -28,7 +28,6 @@ function Login() {
       display: 'flex',
       background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
     }}>
-
       <div style={{
         flex: 1,
         display: 'flex',
@@ -77,23 +76,18 @@ function Login() {
           <p style={{color: '#666', marginBottom: '25px', fontSize: '14px'}}>
             Login to manage your tasks
           </p>
-
           {error && <p className="error">{error}</p>}
-
           <form onSubmit={handleSubmit}>
             <label style={{fontSize: '13px', fontWeight: '600', color: '#444'}}>Email</label>
             <input type="email" placeholder="you@example.com"
               value={email} onChange={(e) => setEmail(e.target.value)} />
-
             <label style={{fontSize: '13px', fontWeight: '600', color: '#444'}}>Password</label>
             <input type="password" placeholder="••••••••"
               value={password} onChange={(e) => setPassword(e.target.value)} />
-
             <button type="submit" style={{width: '100%', marginTop: '5px', padding: '14px'}}>
               Login
             </button>
           </form>
-
           <p style={{marginTop: '20px', textAlign: 'center', fontSize: '14px', color: '#666'}}>
             New here? <a href="/register" className="link">Create one free</a>
           </p>
