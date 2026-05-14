@@ -16,7 +16,7 @@ function Dashboard() {
     } else {
       fetchTasks();
     }
-  }, []);
+  }, [token, navigate]);
 
   const fetchTasks = async () => {
     try {
