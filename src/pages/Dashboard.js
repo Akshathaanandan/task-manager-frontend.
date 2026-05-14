@@ -20,7 +20,7 @@ function Dashboard() {
 
   const fetchTasks = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/tasks', {
+      const res = await axios.get('https://task-manager-api-lylm.onrender.com/api/tasks', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setTasks(res.data);
@@ -33,7 +33,7 @@ function Dashboard() {
     e.preventDefault();
     if (!title) return;
     try {
-      await axios.post('http://localhost:5000/api/tasks',
+      await axios.post('https://task-manager-api-lylm.onrender.com/api/tasks',
         { title, description },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -47,7 +47,7 @@ function Dashboard() {
 
   const updateStatus = async (id, status) => {
     try {
-      await axios.put(`http://localhost:5000/api/tasks/${id}`,
+      await axios.put(`https://task-manager-api-lylm.onrender.com/api/tasks/${id}`,
         { status },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -59,7 +59,7 @@ function Dashboard() {
 
   const deleteTask = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/tasks/${id}`, {
+      await axios.delete(`https://task-manager-api-lylm.onrender.com/api/tasks/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchTasks();
